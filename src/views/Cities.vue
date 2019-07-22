@@ -1,34 +1,25 @@
 <template>
 
-<<<<<<< HEAD
-<v-container grid-list-lg text-xs-center fluid>
-    <v-layout row wrap >
+<v-container grid-list-lg >
+    <v-layout row wrap>
         <v-flex xs4 v-for="i in city">
           <v-card hover="true">
-=======
-    <v-layout row wrap align-center >
-        <v-flex xs12 sm3 md4 lg2 v-for="i in city">
-          <v-card>
->>>>>>> c65237a5947e248f6031398010a524acc1a2f74b
             <v-card-media :src="i.img" height="200px">
             </v-card-media>
-            <v-card-title primary-title>
+            <v-card-title primary-title class="justify-center">
               <div>
-                <h3 class="headline mb-0">{{i.name}}</h3>
+                <h3 class="headline mb-0 ">{{i.name}}</h3>
                 <div>Located two hours south of Sydney in the <br>Southern Highlands of New South Wales, ...</div>
               </div>
             </v-card-title>
-            <v-card-actions>
+            <v-card-actions class="justify-center">
               <v-btn flat color="orange" @click="travelTo(i.lon, i.lat)">Travel</v-btn>
               <v-btn flat color="orange">Explore</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
-<<<<<<< HEAD
   </v-container>
-=======
->>>>>>> c65237a5947e248f6031398010a524acc1a2f74b
 </template>
 
 <script>
@@ -45,15 +36,9 @@ export default {
     return {
       city: [
         {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109 },
-        {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:11, lat:11},
-<<<<<<< HEAD
-        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:11, lat:11}
+        {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:2.154007, lat:41.390205},
+        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610}
         ]
-=======
-        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:11, lat:11},
-
-      ]
->>>>>>> c65237a5947e248f6031398010a524acc1a2f74b
     }
 
   },
