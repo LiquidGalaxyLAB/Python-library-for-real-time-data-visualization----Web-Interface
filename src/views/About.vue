@@ -11,7 +11,10 @@
       </v-card-title>
 
       <v-card-text class="headline font-weight-bold">
-        This web application was implemented as a Google Summer Of Code 2019 project and it's main function is the real time data visualization. The data can be visualized on the Liquid Galaxy screns.<br><br>
+        This web application was implemented as a Google Summer Of Code 2019 project that consist on the creation of a library to acquire data from external sources mainly through forms on an Android application, store them on a local database and handling the conversion to KML data format, through an API. The data will be shown on the Liquid Galaxy System.<br>
+        <br>
+        The application name is HAPIS which means Homeless Aid Panoramic Interactive System and was implemented by Mihaela Claudia Diosan, a Computer Engineering student at the University of Lleida, Lleida.
+         <br><br>
         The persons below helped me in this process by giving me support every moment.
       </v-card-text>
 
