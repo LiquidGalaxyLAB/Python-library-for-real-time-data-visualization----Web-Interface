@@ -22,7 +22,6 @@
      </v-card-media>
         </v-card>
       </v-flex>
-
   </v-app>
 </template>
 
