@@ -111,15 +111,15 @@ a, button {
 /* Adding some background color to the different menu items */
 
 .nav li:nth-child(6n+1) {
-	background: rgb(208, 101, 3);
+	background: rgb(120,63,254);
 }
 
 .nav li:nth-child(6n+2) {
-	background: rgb(233, 147, 26);
+	background: rgb(155,166,254);
 }
 
 .nav li:nth-child(6n+3) {
-	background: rgb(22, 145, 190);
+	background: rgb(254,63,196);
 }
 
 
