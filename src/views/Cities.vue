@@ -33,15 +33,9 @@ export default {
   data: function() {
     return {
       city: [
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg',name: 'Torres', lon:11, lat:11},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg',name: 'Lleida', lon:11, lat:11},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
-        {img:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Alcarr%C3%A0s_iglesia.jpg/225px-Alcarr%C3%A0s_iglesia.jpg' , name: 'alcarras', lon:10,lat:10},
+        {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109 },
+        {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:11, lat:11},
+        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:11, lat:11},
 
       ]
     }
