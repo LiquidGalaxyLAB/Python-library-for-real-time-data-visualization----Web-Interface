@@ -2,7 +2,7 @@
 
 <v-container grid-list-lg >
     <v-layout row wrap>
-        <v-flex xs4 v-for="i in city">
+        <v-flex xs4 v-for="i in city" v-bind:key="i.name">
           <v-card hover="true" color="#e8eaff">
             <v-card-media :src="i.img" height="200px">
             </v-card-media>
@@ -13,7 +13,7 @@
               </div>
             </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn  flat color="#0000db" :to="{ name: 'city' , params : { name: i.name } }" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
+              <v-btn  flat color="#0000db" :to="{ name: 'city' , params : { cityName: i.name, image: i.img } }" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
 
               <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
             </v-card-actions>
@@ -25,14 +25,15 @@
 
 <script>
 // @ is an alias to /src
-import Cities from '@/views/Cities.vue'
-import navbar from '@/components/navbar.vue'
+// import Cities from '@/views/Cities.vue'
+// import navbar from '@/components/navbar.vue'
 import axios from 'axios'
+
 export default {
   name: 'cities',
-  components: {
-    Cities
-  },
+  // components: {
+  //   Cities
+  // },
   data: function() {
     return {
       city: [
