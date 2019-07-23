@@ -13,8 +13,9 @@
               </div>
             </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn flat color="#0000db" @click="travelTo(i.lon, i.lat)">Travel</v-btn>
-              <v-btn flat color="#f900b8">Explore</v-btn>
+              <v-btn  flat color="#0000db" :to="{ name: 'city' , params : { name: i.name } }" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
+
+              <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
             </v-card-actions>
           </v-card>
         </v-flex>
