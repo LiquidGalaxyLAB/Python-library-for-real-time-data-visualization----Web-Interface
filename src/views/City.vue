@@ -22,7 +22,7 @@
                 </div>
               </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn  flat color="#0000db" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
+                <v-btn  flat color="#0000db" @click="travelTo(i.city)">Go To ></v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -50,6 +50,30 @@
     mounted(){
       this.city = this.$route.params.cityName,
       this.imageCity = this.$route.params.image
+
+    },
+    methods: {
+      addPlacemark(){
+      var vm = this
+      var bodyFormData = new FormData()
+      Object.keys(vm.placemark).forEach(function(key){
+        bodyFormData.append(key,vm.placemark[key]);
+      })
+      axios({
+        method: 'post',
+        url: 'http://www.localhost:8080/kml/builder/addplacemark',
+        data: bodyFormData,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+      })
+      .catch(function (response) {
+        //handle error
+        console.log("error",response);
+      });
+      },
 
     }
   }

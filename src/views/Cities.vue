@@ -13,7 +13,7 @@
               </div>
             </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn  flat color="#0000db" :to="{ name: 'city' , params : { cityName: i.name, image: i.img } }" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
+              <v-btn flat color="#0000db" :to="{ name: 'city' , params : { cityName:i.name, image: i.img }}"  @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
 
               <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
             </v-card-actions>
@@ -24,9 +24,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import Cities from '@/views/Cities.vue'
-// import navbar from '@/components/navbar.vue'
+
 import axios from 'axios'
 
 export default {
@@ -45,24 +43,30 @@ export default {
 
   },
   methods: {
-    travelTo(lon,lat){
+    travelTo(city){
+  //    var vm = this
       var formData = new FormData()
-      formData.append('longitude',lon)
-      formData.append('latitude',lat)
+      formData.append('id',city.name)
+      formData.append('name',city.name)
+      formData.append('longitude',city.lon)
+      formData.append('latitude',city.lat)
+      formData.append('range',0)
+      console.log(formData)
       axios({
-        method: 'get',
-        url: 'http:// ip :8080/flyto',
+        method: 'post',
+        url: 'http://192.168.86.26:8080/kml/builder/addplacemark',
         data: formData,
         config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
-      .then(function (response) {
-          //handle success
-          console.log(response);
+       .then(function (response) {
+        //handle success
+        console.log(response)
       })
       .catch(function (response) {
         //handle error
-        console.log(response);
+        console.log("error",response);
       });
+  //     console.log(vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }}))
     }
   }
 }
