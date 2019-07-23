@@ -14,7 +14,7 @@
     </v-content>
     <router-view></router-view>
       <v-flex xs12 sm8 offset-sm2>
-        <v-card color="#fae2fe">
+        <v-card color="#FAFAFA">
           <v-card-title primary-title class="justify-center">
               <h3 class="headline mb-0 ">Main logo and Partners</h3>
           </v-card-title>

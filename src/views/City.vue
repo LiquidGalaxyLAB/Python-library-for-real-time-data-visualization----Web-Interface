@@ -13,7 +13,7 @@
             </v-card>
           </v-flex>
           <v-flex xs3 v-for="i in details">
-            <v-card color="#e8eaff">
+            <v-card color="#fae2fe">
             <v-card-media :src="i.img" height="200px">
             </v-card-media>
               <v-card-title primary-title class="justify-center">
@@ -23,8 +23,6 @@
               </v-card-title>
               <v-card-actions class="justify-center">
                 <v-btn  flat color="#0000db" @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
-
-                <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
               </v-card-actions>
             </v-card>
           </v-flex>
