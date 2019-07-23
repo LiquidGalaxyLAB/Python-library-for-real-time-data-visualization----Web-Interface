@@ -43,7 +43,7 @@
           {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless'},
           {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors'},
           {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers'},
-          {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Statistics&Transactions'}
+          {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
           ]
       }
     },

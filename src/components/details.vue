@@ -37,7 +37,7 @@ export default {
         {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109, description:'Is a city in the west of Catalonia, Spain. It is the capital city of the province of Lleida, with a populayion of 137,387 inhabitants in 2016. ' },
         ]
     }
-
+    
   },
   methods: {
     travelTo(lon,lat){
