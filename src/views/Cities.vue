@@ -13,9 +13,8 @@
               </div>
             </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn flat color="#0000db"   @click="travelTo(i)">Go To ></v-btn>
+            <v-btn flat color="#0000db" @click="travelTo(i)">Go To ></v-btn>
 
-              <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -44,8 +43,8 @@ export default {
   },
   methods: {
     travelTo(city){
-  //    var vm = this
-    console.log("adioashdsiaoh")
+      var vm = this
+      console.log("cities")
       var formData = new FormData()
       formData.append('id',city.name)
       formData.append('name',city.name)
@@ -53,6 +52,8 @@ export default {
       formData.append('latitude',city.lat)
       formData.append('range',0)
       console.log(formData)
+      vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
+
       axios({
         method: 'post',
         url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
@@ -61,9 +62,8 @@ export default {
       })
        .then(function (response) {
         //handle success
-        console.log("dsa")
+        console.log("cities Send")
         console.log(response)
-        vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
       })
       .catch(function (response) {
         //handle error

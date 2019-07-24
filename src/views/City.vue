@@ -22,15 +22,15 @@
                 </div>
               </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn  flat color="#0000db" @click="travelTo(i.city)">Go To ></v-btn>
+                <v-btn flat color="#0000db" @click="travelTo(i)">Go To ></v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
   </v-layout>
 
-  <v-layout>
+<!--  <v-layout>
     <h1> {{message}} </h1>
-  </v-layout>
+  </v-layout> -->
     </v-container>
 </template>
 
@@ -51,12 +51,12 @@ const API_URL = "http://10.33.34.116:3000/"
         city : '',
         imageCity:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless'},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors'},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers'},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',userName: 'Dani Garrido -- Homeless', lon:0.5848295,lat:41.618337, cityName:'Lleida'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',userName: 'Alicia Fernandez -- Donor', lon:2.169009,lat:41.378773, cityName:'Barcelona'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',userName: 'Will Smith -- Volunteer', lon: -73.996718,lat:40.672346, cityName:'New York'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
         ],
-        message: [],
+      //  message: []
       }
     },
     mounted(){
@@ -91,29 +91,37 @@ const API_URL = "http://10.33.34.116:3000/"
 
     },
     methods: {
-      addPlacemark(){
-      var vm = this
-      var bodyFormData = new Formata()
-      Object.keys(vm.placemark).forEach(function(key){
-        bodyFormData.append(key,vm.placemark[key]);
-      })
-      axios({
-        method: 'post',
-        url: 'http://www.localhost:8080/kml/builder/addplacemark',
-        data: bodyFormData,
-        config: { headers: {'Content-Type': 'multipart/form-data' }}
-      })
-      .then(function (response) {
-        //handle success
-        console.log(response);
-      })
-      .catch(function (response) {
-        //handle error
-        console.log("error",response);
-      });
-      },
 
-    }
+        travelTo(details){
+          var vm = this
+          console.log("details")
+          var formData = new FormData()
+          formData.append('id',details.userName)
+          formData.append('name', details.userName)
+          formData.append('longitude',details.lon)
+          formData.append('latitude',details.lat)
+          formData.append('range',0)
+          console.log(formData)
+
+          axios({
+            method: 'post',
+            url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
+            data: formData,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+          })
+           .then(function (response) {
+            //handle success
+            console.log("homeless Send")
+            console.log(response)
+            vm.$router.push({ name: 'details' , params : { homelessName:details.homelessName, city: details.cityName }})
+
+          })
+          .catch(function (response) {
+            //handle error
+            console.log("error",response);
+          });
+        }
+      }
   }
 </script>
 

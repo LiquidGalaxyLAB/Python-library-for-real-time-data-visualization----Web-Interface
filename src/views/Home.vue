@@ -19,34 +19,9 @@
 <script>
 
 
-//import navbar from '@/components/navbar.vue'
 import axios from 'axios'
 
 
-export default {
-//  name: 'home',
-//  components: {
+export default {}
 
-  //  navbar
-//  },
-/*  data: function(){
-    volunteers : []
-  },
-  mounted(){
-    var vm = this
-    axios({
-      method: 'get',
-      url: 'http://localhost:3000/volunteers',
-    })
-    .then(function (response) {
-        //handle success
-        console.log(response.data)
-        vm.volunteers = response.data
-    })
-    .catch(function (response) {
-      //handle error
-      console.log(response);
-    });
-  } */
-}
 </script>

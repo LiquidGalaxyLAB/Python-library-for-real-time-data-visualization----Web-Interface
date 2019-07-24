@@ -50,7 +50,7 @@ export default {
       team: [
         {img:'https://i.ibb.co/4SzYsWy/Screenshot-from-2019-07-22-21-06-38.png' , name: 'Nerea Serrano'},
         {img:'https://i.ibb.co/KjsPb5C/Screenshot-from-2019-07-22-21-06-38-2.png',name: 'Roger Artero'},
-        {img:'https://i.ibb.co/Ph6sSYq/Screenshot-from-2019-07-22-21-28-06.png',name: 'Francesc Tuset'}
+        {img:'https://i.ibb.co/Ph6sSYq/Screenshot-from-2019-07-22-21-28-06.png',name: 'Francesc'}
         ]
     }
 
