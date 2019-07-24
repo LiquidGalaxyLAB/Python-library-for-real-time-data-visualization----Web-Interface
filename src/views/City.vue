@@ -27,6 +27,7 @@
             </v-card>
           </v-flex>
   </v-layout>
+
   <v-layout>
     <h1> {{message}} </h1>
   </v-layout>
@@ -35,7 +36,11 @@
 
 
 <script type="text/javascript">
-const API_URL = "http://localhost:3000/"
+
+import axios from 'axios'
+
+
+const API_URL = "http://10.33.34.116:3000/"
   export default {
     name:'details',
 
@@ -86,10 +91,9 @@ const API_URL = "http://localhost:3000/"
 
     },
     methods: {
-
       addPlacemark(){
       var vm = this
-      var bodyFormData = new FormData()
+      var bodyFormData = new Formata()
       Object.keys(vm.placemark).forEach(function(key){
         bodyFormData.append(key,vm.placemark[key]);
       })
@@ -116,4 +120,4 @@ const API_URL = "http://localhost:3000/"
 
 <style media="screen">
 
-</style>
+</style

@@ -13,7 +13,7 @@
               </div>
             </v-card-title>
             <v-card-actions class="justify-center">
-              <v-btn flat color="#0000db" :to="{ name: 'city' , params : { cityName:i.name, image: i.img }}"  @click="travelTo(i.lon, i.lat)">Go To ></v-btn>
+              <v-btn flat color="#0000db"   @click="travelTo(i)">Go To ></v-btn>
 
               <!-- <router-link :to="{ name: 'city' , params : { name: i.name } }" >Go To ></router-link> -->
             </v-card-actions>
@@ -45,6 +45,7 @@ export default {
   methods: {
     travelTo(city){
   //    var vm = this
+    console.log("adioashdsiaoh")
       var formData = new FormData()
       formData.append('id',city.name)
       formData.append('name',city.name)
@@ -54,19 +55,20 @@ export default {
       console.log(formData)
       axios({
         method: 'post',
-        url: 'http://192.168.86.117:8080/kml/builder/addplacemark',
+        url: 'http://localhost:4567/kml/builder/addplacemark',
         data: formData,
         config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
        .then(function (response) {
         //handle success
+        console.log("dsa")
         console.log(response)
+        vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
       })
       .catch(function (response) {
         //handle error
         console.log("error",response);
       });
-  //     console.log(vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }}))
     }
   }
 }

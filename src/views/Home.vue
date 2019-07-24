@@ -19,17 +19,17 @@
 <script>
 
 
-import navbar from '@/components/navbar.vue'
+//import navbar from '@/components/navbar.vue'
 import axios from 'axios'
 
 
 export default {
-  name: 'home',
-  components: {
+//  name: 'home',
+//  components: {
 
-    navbar
-  },
-  data: function(){
+  //  navbar
+//  },
+/*  data: function(){
     volunteers : []
   },
   mounted(){
@@ -47,6 +47,6 @@ export default {
       //handle error
       console.log(response);
     });
-  }
+  } */
 }
 </script>
