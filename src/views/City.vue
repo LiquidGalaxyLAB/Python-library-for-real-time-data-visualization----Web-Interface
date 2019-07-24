@@ -27,13 +27,19 @@
             </v-card>
           </v-flex>
   </v-layout>
+  <v-layout>
+    <h1> {{message}} </h1>
+  </v-layout>
     </v-container>
 </template>
 
 
 <script type="text/javascript">
+const API_URL = "http://localhost:3000/"
   export default {
     name:'details',
+
+
 
     data: function(){
       return {
@@ -44,15 +50,43 @@
           {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors'},
           {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
-          ]
+        ],
+        message: [],
       }
     },
     mounted(){
+      var urlApi
+      var vm = this
       this.city = this.$route.params.cityName,
-      this.imageCity = this.$route.params.image
+      this.imageCity = this.$route.params.image,
+
+      urlApi =  API_URL + "volunteers/" +this.city
+      console.log(urlApi)
+      axios({
+        headers: {
+	         'Access-Control-Allow-Origin': '*',
+           "Access-Control-Allow-Headers": "*",
+           "Access-Control-Allow-Methods":
+           "GET, POST, PUT, DELETE, OPTIONS"
+	      },
+        method: 'GET',
+        url: urlApi,
+        config: { headers: {'Content-Type': 'multipart/form-data' }}
+
+      })
+      .then(function (response) {
+        //handle success
+        console.log(response);
+        vm.message = response.data;
+
+      })
+      .catch(function(err){
+        console.log(err)
+      })
 
     },
     methods: {
+
       addPlacemark(){
       var vm = this
       var bodyFormData = new FormData()

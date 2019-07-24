@@ -54,7 +54,7 @@ export default {
       console.log(formData)
       axios({
         method: 'post',
-        url: 'http://192.168.86.26:8080/kml/builder/addplacemark',
+        url: 'http://192.168.86.117:8080/kml/builder/addplacemark',
         data: formData,
         config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
