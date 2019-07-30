@@ -29,9 +29,7 @@ const ERIC_API = "http://10.33.34.116:4567/"
 
 export default {
   name: 'cities',
-  // components: {
-  //   Cities
-  // },
+
   data: function() {
     return {
       city: [
@@ -53,6 +51,9 @@ export default {
       formData.append('latitude',city.lat)
       formData.append('range',0)
       console.log(formData)
+      console.log('city:',city.name)
+      console.log('longitude:',city.lon)
+      console.log('latitude:',city.lat)
       vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
 
       axios({
@@ -70,6 +71,8 @@ export default {
         //handle error
         console.log("error",response);
       });
+
+      //FlyTo method
     }
   }
 }

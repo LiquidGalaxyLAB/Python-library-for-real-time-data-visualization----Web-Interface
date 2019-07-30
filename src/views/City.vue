@@ -28,10 +28,6 @@
           </v-flex>
   </v-layout>
 
-<!--  <v-layout>
-    <h1> {{message}} </h1>
-  </v-layout> -->
-
     </v-container>
 </template>
 
@@ -40,87 +36,97 @@
 
 import axios from 'axios'
 
+const API_URL = "http://localhost:3000/"
+const ERIC_API = "http://10.33.34.116:4567/"
+
 
   export default {
     name:'details',
 
     data: function(){
       return {
-        city : '',
-        imageCity:'',
+        city : '' ,
+        title:'',
+        cityName:'',
+        imageCity:'' ,
+        imageRole:'' ,
+        role:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', lon:0.5848295,lat:41.618337},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', lon:2.169009,lat:41.378773},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers', lon: -73.996718,lat:40.672346},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
-        ],
-        message: [],
+        ] ,
+        roleInfo:[]
       }
     },
     mounted(){
 
-      var vm = this
+
       this.city = this.$route.params.cityName,
       this.imageCity = this.$route.params.image
 
     },
     methods: {
+      travelTo(details){
+        var vm = this
+        var lon = ''
+        var lat=''
+        var name=''
+        var formData = new FormData()
+    //    console.log(details)
 
-        travelTo(details){
-          var vm = this
-    /*      console.log("details")
-          var formData = new FormData()
-          formData.append('id',details.userName)
-          formData.append('name', details.userName)
-          formData.append('longitude',details.lon)
-          formData.append('latitude',details.lat)
-          formData.append('range',0)
-          console.log(formData) */
-          vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, image:details.img }})
+        var urlApi = API_URL + details.role + '/' + this.city
+        console.log(urlApi)
+        vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
 
-      /*    axios({
-            headers: {
-               'Access-Control-Allow-Origin': '*',
-               "Access-Control-Allow-Headers": "*",
-               "Access-Control-Allow-Methods":
-               "GET, POST, PUT, DELETE, OPTIONS"
-            },
-            method: 'GET',
-            url: urlApi,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
+        axios.get(urlApi)
+       .then(function (response){
+         console.log(response.data);
+         vm.roleInfo = response.data
 
-          })
-          .then(function (response) {
-            //handle success
-            console.log(response);
-      //      vm.message = response.data;
+         vm.roleInfo.forEach((item)=>{
 
-          })
-          .catch(function(err){
-            console.log(err)
-          })  */
+           //formData define
+           formData.append('id',details.role)
+           formData.append('name',item.FirstName)
+           formData.append('longitude',item.Location[0])
+           formData.append('latitude',item.Location[1])
+           formData.append('range',0)
+           console.log('Role',details.role)
+           console.log('Name:',item.FirstName)
+           console.log('longitude:',item.Location[0])
+           console.log('latitude',item.Location[1])
+           console.log('formData',formData)
+         });
+       }).catch(function(error){
+         console.log(error);
+       });
 
-      /*    axios({
-            method: 'post',
-            url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
-            data: formData,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-          })
-           .then(function (response) {
-            //handle success
-            console.log(response)
-            vm.$router.push({ name: 'details' , params : { homelessName: details.homelessName, city: details.cityName }})
+       //addplacemark method
 
-          })
-          .catch(function (response) {
-            //handle error
-            console.log("error",response);
-          }); */
-        }
+       axios({
+         method: 'post',
+         url: ERIC_API + 'kml/builder/addplacemark',
+         data: formData,
+         config: { headers: {'Content-Type': 'multipart/form-data' }}
+       })
+        .then(function (response) {
+         //handle success
+         console.log("details Send")
+         console.log(response)
+       })
+       .catch(function (response) {
+         //handle error
+         console.log("error",response);
+       });
+
 
 
       }
-  }
+    }
+}
+
 </script>
 
 

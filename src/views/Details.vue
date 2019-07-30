@@ -3,7 +3,7 @@
       <v-layout row wrap>
           <v-flex xs12 >
             <v-card color="#e8eaff">
-            <v-card-media :src="image" height="200px">
+            <v-card-media :src="imageRole" height="200px">
             </v-card-media>
               <v-card-title primary-title class="justify-center">
                 <div>
@@ -11,29 +11,12 @@
                 </div>
                 <v-spacer> </v-spacer>
                 <div>
-                  <h3 class="headline mb-0 ">{{city}}</h3>
+                  <h3 class="headline mb-0 ">{{cityName}}</h3>
                 </div>
               </v-card-title>
             </v-card>
           </v-flex>
   </v-layout>
-
-
-<!--  <table class="table table-striped table-borders">
-    <tr>
-      <th>Location</th>
-      <th>City</th>
-    </tr>
-
-  <thead>
-  </thead>
-  <tbody>
-    <tr v-for="k in Info">
-      <td>{{k.Location}}</td>
-      <td>{{k.city}}</td>
-    </tr>
-  </tbody>
-</table> -->
 
 
     </v-container>
@@ -44,7 +27,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:3000/"
-const ERIC_API = "http://localhost:4567"
+const ERIC_API = "http://10.33.34.116:4567"
 
 
 
@@ -53,91 +36,19 @@ export default {
 
   data: function(){
     return {
-      city : '',
-      image:'',
-      details: '',
-      message: '',
+      cityName : '',
+      imageRole:'',
       role:'',
-      title:'',
-      Info:[]
+      title:''
     }
   },
 
 mounted(){
-  var lon = ''
-  var lat = ''
-  var FirstName =''
-  var LastName =''
-  var username =''
-  var city =''
-
-  var vm = this
-
-  this.image = this.$route.params.image,
-  this.city = this.$route.params.cityName,
-  this.role = this.$route.params.role,
-  this.title = this.$route.params.title
-  var urlApi = API_URL + this.role + '/' + this.city
-
-//  vm.message = urlApi
-
-  axios.get(urlApi)
-    .then(function (response){
-      console.log(response.data);
-      vm.Info = response.data
-
-      vm.Info.forEach((item)=>{
-        lon = item.Location[0]
-        lat = item.Location[1]
-        FirstName = item.FirstName
-        LastName = item.LastName
-        username = item.username
-        city = item.city
-        console.log("longitute:",item.Location[0])
-        console.log("latitude:",item.Location[1])
-      //  console.log("latitude",item.Location[1])
-
-      });
-
-
-      vm.lon = lon;
-      vm.lat = lat;
-      vm.FirstName = FirstName;
-      vm.LastName = LastName;
-      vm.username = username;
-      vm.city = city;
-
-
-    }).catch(function(error){
-      console.log(error);
-    });
-
-    var formData = new FormData()
-    formData.append('id',Info.city)
-    formData.append('Firstname', Info.FirstName)
-    formData.append('LastName',Info.LastName)
-    formData.append('username',Info.username)
-    formData.append('longitude',Info.lon)
-    formData.append('latitude',Info.lat)
-    formData.append('range',0)
-    console.log(formData)
-    vm.$router.push({ name: 'details' , params : { FirstName:Info.FirstName, LastName: Info.LastName }})
-
-    axios({
-      method: 'post',
-      url: ERIC_API,
-      data: formData,
-      config: { headers: {'Content-Type': 'multipart/form-data' }}
-      })
-       .then(function (response) {
-        //handle success
-        console.log(response)
-      //  vm.$router.push({ name: 'details' , params : { homelessName: details.homelessName, city: details.cityName }})
-        })
-        .catch(function (response) {
-          //handle error
-          console.log("error",response);
-        });
+ this.cityName = this.$route.params.cityName;
+ this.imageRole = this.$route.params.imageRole;
+ this.role = this.$route.params.role;
+ this.title = this.$route.params.title;
+// var urlApi = API_URL + this.role + '/' + this.city
 
 }
 
