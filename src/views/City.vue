@@ -98,29 +98,27 @@ const ERIC_API = "http://10.33.34.116:4567/"
            console.log('longitude:',item.Location[0])
            console.log('latitude',item.Location[1])
            console.log('formData',formData)
+
+              //addplacemark method
+           axios({
+             method: 'post',
+             url: ERIC_API + 'kml/builder/addplacemark',
+             data: formData,
+             config: { headers: {'Content-Type': 'multipart/form-data' }}
+           })
+            .then(function (response) {
+             //handle success
+             console.log("details Send")
+             console.log(response)
+           })
+           .catch(function (response) {
+             //handle error
+             console.log("error",response);
+           });
          });
        }).catch(function(error){
          console.log(error);
        });
-
-       //addplacemark method
-
-       axios({
-         method: 'post',
-         url: ERIC_API + 'kml/builder/addplacemark',
-         data: formData,
-         config: { headers: {'Content-Type': 'multipart/form-data' }}
-       })
-        .then(function (response) {
-         //handle success
-         console.log("details Send")
-         console.log(response)
-       })
-       .catch(function (response) {
-         //handle error
-         console.log("error",response);
-       });
-
 
 
       }
