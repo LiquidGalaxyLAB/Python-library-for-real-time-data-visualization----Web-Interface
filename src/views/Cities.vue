@@ -25,6 +25,7 @@
 <script>
 
 import axios from 'axios'
+const ERIC_API = "http://10.33.34.116:4567/"
 
 export default {
   name: 'cities',
@@ -56,7 +57,7 @@ export default {
 
       axios({
         method: 'post',
-        url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
+        url: ERIC_API + 'kml/builder/addplacemark',
         data: formData,
         config: { headers: {'Content-Type': 'multipart/form-data' }}
       })

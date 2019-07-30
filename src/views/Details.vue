@@ -44,6 +44,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:3000/"
+const ERIC_API = "http://localhost:4567"
 
 
 
@@ -99,6 +100,14 @@ mounted(){
       });
 
 
+      vm.lon = lon;
+      vm.lat = lat;
+      vm.FirstName = FirstName;
+      vm.LastName = LastName;
+      vm.username = username;
+      vm.city = city;
+
+
     }).catch(function(error){
       console.log(error);
     });
@@ -115,7 +124,7 @@ mounted(){
 
     axios({
       method: 'post',
-      url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
+      url: ERIC_API,
       data: formData,
       config: { headers: {'Content-Type': 'multipart/form-data' }}
       })

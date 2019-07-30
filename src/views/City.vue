@@ -41,7 +41,6 @@
 import axios from 'axios'
 
 
-const API_URL = "http://localhost:3000/"
   export default {
     name:'details',
 
@@ -61,7 +60,6 @@ const API_URL = "http://localhost:3000/"
     mounted(){
 
       var vm = this
-      var urlApi = 'http://localhost:3000'
       this.city = this.$route.params.cityName,
       this.imageCity = this.$route.params.image
 
