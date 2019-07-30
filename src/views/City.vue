@@ -89,14 +89,14 @@ const ERIC_API = "http://10.33.34.116:4567/"
 
            //formData define
            formData.append('id',details.role)
-           formData.append('name',item.FirstName)
-           formData.append('longitude',item.Location[0])
-           formData.append('latitude',item.Location[1])
+           formData.append('name',item.completeName)
+           formData.append('longitude',item.location[0])
+           formData.append('latitude',item.location[1])
            formData.append('range',0)
            console.log('Role',details.role)
-           console.log('Name:',item.FirstName)
-           console.log('longitude:',item.Location[0])
-           console.log('latitude',item.Location[1])
+           console.log('Name:',item.completeName)
+           console.log('longitude:',item.location[0])
+           console.log('latitude',item.location[1])
            console.log('formData',formData)
 
               //addplacemark method
