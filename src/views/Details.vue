@@ -121,6 +121,7 @@ mounted(){
     formData.append('latitude',Info.lat)
     formData.append('range',0)
     console.log(formData)
+    vm.$router.push({ name: 'details' , params : { FirstName:Info.FirstName, LastName: Info.LastName }})
 
     axios({
       method: 'post',
