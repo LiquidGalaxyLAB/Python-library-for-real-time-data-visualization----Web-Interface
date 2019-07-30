@@ -113,12 +113,12 @@ mounted(){
     });
 
     var formData = new FormData()
-    formData.append('id',vm.city)
-    formData.append('Firstname', vm.FirstName)
-    formData.append('LastName',vm.LastName)
-    formData.append('username',vm.username)
-    formData.append('longitude',vm.lon)
-    formData.append('latitude',vm.lat)
+    formData.append('id',Info.city)
+    formData.append('Firstname', Info.FirstName)
+    formData.append('LastName',Info.LastName)
+    formData.append('username',Info.username)
+    formData.append('longitude',Info.lon)
+    formData.append('latitude',Info.lat)
     formData.append('range',0)
     console.log(formData)
 
