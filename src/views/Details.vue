@@ -18,11 +18,8 @@
           </v-flex>
   </v-layout>
 
-  <v-layout>
 
-  </v-layout>
-
-  <table class="table table-striped table-borders">
+<!--  <table class="table table-striped table-borders">
     <tr>
       <th>Location</th>
       <th>City</th>
@@ -34,10 +31,11 @@
     <tr v-for="k in Info">
       <td>{{k.Location}}</td>
       <td>{{k.city}}</td>
-      <td>{{k.FirstName}}</td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+
     </v-container>
 </template>
 
@@ -48,6 +46,7 @@ import axios from 'axios'
 const API_URL = "http://localhost:3000/"
 
 
+
 export default {
   name:'details',
 
@@ -56,7 +55,7 @@ export default {
       city : '',
       image:'',
       details: '',
-      message: [],
+      message: '',
       role:'',
       title:'',
       Info:[]
@@ -64,9 +63,15 @@ export default {
   },
 
 mounted(){
+  var lon = ''
+  var lat = ''
+  var FirstName =''
+  var LastName =''
+  var username =''
+  var city =''
 
   var vm = this
-  var location
+
   this.image = this.$route.params.image,
   this.city = this.$route.params.cityName,
   this.role = this.$route.params.role,
@@ -80,9 +85,53 @@ mounted(){
       console.log(response.data);
       vm.Info = response.data
 
+      vm.Info.forEach((item)=>{
+        lon = item.Location[0]
+        lat = item.Location[1]
+        FirstName = item.FirstName
+        LastName = item.LastName
+        username = item.username
+        city = item.city
+        console.log("longitute:",item.Location[0])
+        console.log("latitude:",item.Location[1])
+      //  console.log("latitude",item.Location[1])
+
+      });
+
+
+    }).catch(function(error){
+      console.log(error);
     });
 
+    var formData = new FormData()
+    formData.append('id',vm.city)
+    formData.append('Firstname', vm.FirstName)
+    formData.append('LastName',vm.LastName)
+    formData.append('username',vm.username)
+    formData.append('longitude',vm.lon)
+    formData.append('latitude',vm.lat)
+    formData.append('range',0)
+    console.log(formData)
+
+    axios({
+      method: 'post',
+      url: 'http://10.33.34.116:4567/kml/builder/addplacemark',
+      data: formData,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+       .then(function (response) {
+        //handle success
+        console.log(response)
+      //  vm.$router.push({ name: 'details' , params : { homelessName: details.homelessName, city: details.cityName }})
+        })
+        .catch(function (response) {
+          //handle error
+          console.log("error",response);
+        });
+
 }
+
+
 }
 
 </script>
