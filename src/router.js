@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Cities from './views/Cities.vue'
 import About from './views/About.vue'
 import City from './views/City.vue'
+import Details from './views/Details.vue'
 
 
 
@@ -30,7 +31,14 @@ export default new Router({
       path: '/city/:cityName',
       name: 'city',
       component: City
+    },
+    {
+      path:'/:role/:cityName',
+      name:'details',
+      component: Details
     }
+
+
 
   ]
 })
