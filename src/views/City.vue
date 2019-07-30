@@ -120,7 +120,7 @@ const ERIC_API = "http://10.33.34.116:4567/"
          console.log(error);
        });
 
-
+       //clean kmls method
       }
     }
 }
