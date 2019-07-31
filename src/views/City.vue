@@ -37,7 +37,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:3000/"
-const ERIC_API = "http://10.33.34.116:4567/"
+const ERIC_API = "http://192.168.86.30:8112/"
 
 
   export default {
@@ -80,6 +80,25 @@ const ERIC_API = "http://10.33.34.116:4567/"
         console.log(urlApi)
         vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
 
+
+        //clean kmls mthod
+        axios({
+          method: 'get',
+          url: ERIC_API + 'kml/manage/clean',
+       //   data: formData,
+       //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+         .then(function (response) {
+          //handle success
+          console.log("clean details")
+          console.log(response)
+        })
+        .catch(function (response) {
+          //handle error
+          console.log("error",response);
+        });
+
+
         axios.get(urlApi)
        .then(function (response){
          console.log(response.data);
@@ -93,11 +112,12 @@ const ERIC_API = "http://10.33.34.116:4567/"
            formData.append('longitude',item.location[0])
            formData.append('latitude',item.location[1])
            formData.append('range',0)
-           console.log('Id:',details.id)
+           console.log('Id',details.id)
            console.log('Name:',item.completeName)
            console.log('longitude:',item.location[0])
            console.log('latitude',item.location[1])
            console.log('formData',formData)
+
 
               //addplacemark method
            axios({
