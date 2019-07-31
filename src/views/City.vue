@@ -10,7 +10,10 @@
                   <h3 class="headline mb-0 ">{{city}}</h3>
                 </div>
               </v-card-title>
-            </v-card>
+              <v-card-actions class="justify-center">
+                <v-btn flat color="#33cc00" @click="cleanKml()">Clean </v-btn>
+              </v-card-actions>
+              </v-card>
           </v-flex>
           <v-flex xs3 v-for="i in details">
             <v-card color="#fae2fe">
@@ -68,36 +71,18 @@ const ERIC_API = "http://192.168.86.30:8112/"
 
     },
     methods: {
+
       travelTo(details){
         var vm = this
         var lon = ''
         var lat=''
         var name=''
-        var formData = new FormData()
+
     //    console.log(details)
 
         var urlApi = API_URL + details.role + '/' + this.city
         console.log(urlApi)
         vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
-
-
-        //clean kmls mthod
-        axios({
-          method: 'get',
-          url: ERIC_API + 'kml/manage/clean',
-       //   data: formData,
-       //   config: { headers: {'Content-Type': 'multipart/form-data' }}
-        })
-         .then(function (response) {
-          //handle success
-          console.log("clean details")
-          console.log(response)
-        })
-        .catch(function (response) {
-          //handle error
-          console.log("error",response);
-        });
-
 
         axios.get(urlApi)
        .then(function (response){
@@ -107,6 +92,7 @@ const ERIC_API = "http://192.168.86.30:8112/"
          vm.roleInfo.forEach((item)=>{
 
            //formData define
+           var formData = new FormData()
            formData.append('id',details.id)
            formData.append('name',item.completeName)
            formData.append('longitude',item.location[0])
@@ -141,6 +127,25 @@ const ERIC_API = "http://192.168.86.30:8112/"
        });
 
        //clean kmls method
+     },
+
+      cleanKml(){
+        //clean kmls mthod
+        axios({
+          method: 'get',
+          url: ERIC_API + 'kml/manage/clean',
+       //   data: formData,
+       //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+         .then(function (response) {
+          //handle success
+          console.log("clean details")
+          console.log(response)
+        })
+        .catch(function (response) {
+          //handle error
+          console.log("error",response);
+        });
       }
     }
 }
