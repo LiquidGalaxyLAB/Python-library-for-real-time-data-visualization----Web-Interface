@@ -8,6 +8,7 @@
       <v-spacer></v-spacer>
       <v-btn  flat color="#33cc00" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
+
     <v-content>
       <v-container align-center>
         <navbar/>
@@ -39,7 +40,12 @@ export default {
   },
   data () {
     return {
-      //
+      items: [
+        { title: 'Click Me1' },
+        { title: 'Click Me2' },
+        { title: 'Click Me3' },
+        { title: 'Click Me4' },
+      ],
     }
   },
   methods: {
