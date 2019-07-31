@@ -52,9 +52,9 @@ const ERIC_API = "http://10.33.34.116:4567/"
         imageRole:'' ,
         role:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless'},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors'},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers'},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
         ] ,
         roleInfo:[]
@@ -88,12 +88,12 @@ const ERIC_API = "http://10.33.34.116:4567/"
          vm.roleInfo.forEach((item)=>{
 
            //formData define
-           formData.append('id',details.role)
+           formData.append('id',details.id)
            formData.append('name',item.completeName)
            formData.append('longitude',item.location[0])
            formData.append('latitude',item.location[1])
            formData.append('range',0)
-           console.log('Role',details.role)
+           console.log('Id:',details.id)
            console.log('Name:',item.completeName)
            console.log('longitude:',item.location[0])
            console.log('latitude',item.location[1])

@@ -51,9 +51,9 @@ export default {
       formData.append('latitude',city.lat)
       formData.append('range',0)
       console.log(formData)
-      console.log('city:',city.name)
-      console.log('longitude:',city.lon)
-      console.log('latitude:',city.lat)
+    //  console.log('city:',city.name)
+    //  console.log('longitude:',city.lon)
+    //  console.log('latitude:',city.lat)
       vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
 
       axios({
