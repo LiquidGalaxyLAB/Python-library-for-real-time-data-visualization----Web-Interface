@@ -10,9 +10,6 @@
                   <h3 class="headline mb-0 ">{{city}}</h3>
                 </div>
               </v-card-title>
-              <v-card-actions class="justify-center">
-                <v-btn flat color="#33cc00" @click="cleanKml()">Clean </v-btn>
-              </v-card-actions>
               </v-card>
           </v-flex>
           <v-flex xs3 v-for="i in details">
@@ -127,26 +124,7 @@ const ERIC_API = "http://192.168.86.30:8112/"
        });
 
        //clean kmls method
-     },
-
-      cleanKml(){
-        //clean kmls mthod
-        axios({
-          method: 'get',
-          url: ERIC_API + 'kml/manage/clean',
-       //   data: formData,
-       //   config: { headers: {'Content-Type': 'multipart/form-data' }}
-        })
-         .then(function (response) {
-          //handle success
-          console.log("clean details")
-          console.log(response)
-        })
-        .catch(function (response) {
-          //handle error
-          console.log("error",response);
-        });
-      }
+     }
     }
 }
 

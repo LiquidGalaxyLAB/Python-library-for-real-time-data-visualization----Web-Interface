@@ -6,6 +6,7 @@
         <span class="font-weight-light"> Python library for real time data visualization</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn  flat color="#33cc00" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
     <v-content>
       <v-container align-center>
@@ -28,6 +29,8 @@
 <script>
 
 import navbar from './components/navbar'
+import axios from 'axios'
+const ERIC_API = "http://192.168.86.30:8112/"
 
 export default {
   name: 'App',
@@ -38,6 +41,28 @@ export default {
     return {
       //
     }
+  },
+  methods: {
+    cleanKml(){
+      //clean kmls mthod
+      axios({
+        method: 'get',
+        url: ERIC_API + 'kml/manage/clean',
+     //   data: formData,
+     //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+       .then(function (response) {
+        //handle success
+        console.log("clean details")
+        console.log(response)
+      })
+      .catch(function (response) {
+        //handle error
+        console.log("error",response);
+      });
+    }
+
   }
 }
+
 </script>
