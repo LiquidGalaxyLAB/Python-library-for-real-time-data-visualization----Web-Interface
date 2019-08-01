@@ -24,10 +24,10 @@
 
 <script type="text/javascript">
 
-import axios from 'axios'
+//import axios from 'axios'
 
-const API_URL = "http://localhost:3000/"
-const ERIC_API = "http://192.168.86.30:8112/"
+//const API_URL = "http://localhost:3000/"
+//const ERIC_API = "http://192.168.86.30:8112/"
 
 
 

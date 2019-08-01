@@ -1,6 +1,6 @@
 <template>
   <v-container  align-content-center justify-center row fill-height >
-  <nav  id="menu" class="nav" >
+   <nav  id="menu" class="nav" >
   	<ul style="margin-left:auto;margin-right:auto;">
   		<li>
   			<a  href="#/" title="">

@@ -59,7 +59,6 @@ export default {
       })
        .then(function (response) {
         //handle success
-        console.log("clean details")
         console.log(response)
       })
       .catch(function (response) {

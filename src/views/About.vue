@@ -43,7 +43,7 @@ import navbar from '@/components/navbar.vue'
 export default {
   name: 'home',
   components: {
-    navbar
+    
   },
   data: function() {
     return {

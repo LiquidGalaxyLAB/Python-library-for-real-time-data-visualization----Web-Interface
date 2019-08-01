@@ -32,14 +32,12 @@ export default {
   data: function() {
     return {
       city: [
-        {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109,range:22000, description:'Is a city in the west of Catalonia, Spain. It is the capital city of the province of Lleida, with a populayion of 137,387 inhabitants in 2016. ' },
-        {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:2.154007, lat:41.390205,range:30000, description:'It is the capital and largest city of the autonomous community of Catalonia, with a population of 1.6 million within city limits.'},
-        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610,range:183000, description:' The City of New York, is the most populous city in the United States,with an estimated 2018 population of 8,398,748.'}
+        {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109,range:4000, description:'Is a city in the west of Catalonia, Spain. It is the capital city of the province of Lleida, with a populayion of 137,387 inhabitants in 2016. ' },
+        {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:2.154007, lat:41.390205,range:9000, description:'It is the capital and largest city of the autonomous community of Catalonia, with a population of 1.6 million within city limits.'},
+        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610,range:13000, description:' The City of New York, is the most populous city in the United States,with an estimated 2018 population of 8,398,748.'}
         ]
     }
-//    /kml/manage/clean
-//    /kml/flyto/:longitude/:latitude/:range
-
+    
   },
   methods: {
     travelTo(city){
@@ -53,8 +51,8 @@ export default {
       formData.append('range',0)
       console.log(formData) */
     //  console.log('city:',city.name)
-      console.log('longitude:',city.lon)
-      console.log('latitude:',city.lat)
+    //  console.log('longitude:',city.lon)
+    //  console.log('latitude:',city.lat)
       vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
 
       axios({
@@ -65,8 +63,9 @@ export default {
       })
        .then(function (response) {
         //handle success
-        console.log("cities Send")
+      //  console.log("cities Send")
         console.log(response)
+
       })
       .catch(function (response) {
         //handle error

@@ -12,7 +12,7 @@
               </v-card-title>
               </v-card>
           </v-flex>
-          <v-flex xs3 v-for="i in details">
+          <v-flex xs3 v-for="i in details" v-bind:key="i.id">
             <v-card color="#fae2fe">
             <v-card-media :src="i.img" height="200px">
             </v-card-media>
@@ -71,19 +71,18 @@ import axios from 'axios'
 
       travelTo(details){
         var vm = this
-        var lon = ''
-        var lat=''
-        var name=''
+
+
 
     //    console.log(details)
 
-        var urlApi = VUE_APP_NODE_API_URL + details.role + '/' + this.city
-        console.log(urlApi)
+        var urlApi = process.env.VUE_APP_NODE_API_URL + details.role + '/' + this.city
+      //  console.log(urlApi)
         vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
 
         axios.get(urlApi)
        .then(function (response){
-         console.log(response.data);
+      //   console.log(response.data);
          vm.roleInfo = response.data
 
          vm.roleInfo.forEach((item)=>{
@@ -95,11 +94,7 @@ import axios from 'axios'
            formData.append('longitude',item.location[0])
            formData.append('latitude',item.location[1])
            formData.append('range',0)
-           console.log('Id',details.id)
-           console.log('Name:',item.completeName)
-           console.log('longitude:',item.location[0])
-           console.log('latitude',item.location[1])
-           console.log('formData',formData)
+           
 
 
               //addplacemark method
@@ -111,19 +106,20 @@ import axios from 'axios'
            })
             .then(function (response) {
              //handle success
-             console.log("details Send")
-             console.log(response)
+        //     console.log("details Send")
+        //     console.log(response)
            })
            .catch(function (response) {
              //handle error
-             console.log("error",response);
+            console.log("error",response);
+
            });
          });
        }).catch(function(error){
-         console.log(error);
+          console.log(error);
+
        });
 
-       //clean kmls method
      }
     }
 }
@@ -132,5 +128,3 @@ import axios from 'axios'
 
 
 <style media="screen">
-
-</style
