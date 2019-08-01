@@ -37,7 +37,7 @@
 import axios from 'axios'
 
 const API_URL = "http://localhost:3000/"
-const ERIC_API = "http://192.168.86.30:8112/"
+const ERIC_API = "http://10.33.34.109:8080/"
 
 
   export default {

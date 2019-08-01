@@ -24,7 +24,7 @@
 <script>
 
 import axios from 'axios'
-const ERIC_API = "http://192.168.86.30:8112/"
+const ERIC_API = "http://10.33.34.109:8080/"
 
 export default {
   name: 'cities',
@@ -32,9 +32,9 @@ export default {
   data: function() {
     return {
       city: [
-        {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109,range:25000, description:'Is a city in the west of Catalonia, Spain. It is the capital city of the province of Lleida, with a populayion of 137,387 inhabitants in 2016. ' },
+        {img:'https://i.ibb.co/qFtLd56/lleida.jpg' , name: 'Lleida', lon:0.6419,lat:41.6109,range:22000, description:'Is a city in the west of Catalonia, Spain. It is the capital city of the province of Lleida, with a populayion of 137,387 inhabitants in 2016. ' },
         {img:'https://i.ibb.co/zhwqZP4/barcelona.jpg',name: 'Barcelona', lon:2.154007, lat:41.390205,range:30000, description:'It is the capital and largest city of the autonomous community of Catalonia, with a population of 1.6 million within city limits.'},
-        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610,range:50000, description:' The City of New York, is the most populous city in the United States,with an estimated 2018 population of 8,398,748.'}
+        {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610,range:183000, description:' The City of New York, is the most populous city in the United States,with an estimated 2018 population of 8,398,748.'}
         ]
     }
 //    /kml/manage/clean
