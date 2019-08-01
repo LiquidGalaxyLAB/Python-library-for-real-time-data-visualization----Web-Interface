@@ -24,7 +24,7 @@
 <script>
 
 import axios from 'axios'
-const ERIC_API = "http://10.33.34.109:8080/"
+//const ERIC_API = "http://10.33.34.116:8080/"
 
 export default {
   name: 'cities',
@@ -59,7 +59,7 @@ export default {
 
       axios({
         method: 'get',
-        url: ERIC_API + 'kml/flyto/'+ city.lon + '/' + city.lat + '/' + city.range
+        url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ city.lon + '/' + city.lat + '/' + city.range
     //    data: formData,
     //    config: { headers: {'Content-Type': 'multipart/form-data' }}
       })

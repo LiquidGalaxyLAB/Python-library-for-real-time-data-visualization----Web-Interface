@@ -36,8 +36,8 @@
 
 import axios from 'axios'
 
-const API_URL = "http://localhost:3000/"
-const ERIC_API = "http://10.33.34.109:8080/"
+//const API_URL = "http://localhost:3000/"
+//const ERIC_API = "http://10.33.34.116:8080/"
 
 
   export default {
@@ -77,7 +77,7 @@ const ERIC_API = "http://10.33.34.109:8080/"
 
     //    console.log(details)
 
-        var urlApi = API_URL + details.role + '/' + this.city
+        var urlApi = VUE_APP_NODE_API_URL + details.role + '/' + this.city
         console.log(urlApi)
         vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
 
@@ -105,7 +105,7 @@ const ERIC_API = "http://10.33.34.109:8080/"
               //addplacemark method
            axios({
              method: 'post',
-             url: ERIC_API + 'kml/builder/addplacemark',
+             url: process.env.VUE_APP_KML_API_URL + 'kml/builder/addplacemark',
              data: formData,
              config: { headers: {'Content-Type': 'multipart/form-data' }}
            })

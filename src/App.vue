@@ -31,7 +31,7 @@
 
 import navbar from './components/navbar'
 import axios from 'axios'
-const ERIC_API = "http://192.168.86.30:8112/"
+//const ERIC_API = "http://192.168.86.30:8112/"
 
 export default {
   name: 'App',
@@ -53,7 +53,7 @@ export default {
       //clean kmls mthod
       axios({
         method: 'get',
-        url: ERIC_API + 'kml/manage/clean',
+        url: process.env.VUE_APP_KML_API_URL + 'kml/manage/clean',
      //   data: formData,
      //   config: { headers: {'Content-Type': 'multipart/form-data' }}
       })
