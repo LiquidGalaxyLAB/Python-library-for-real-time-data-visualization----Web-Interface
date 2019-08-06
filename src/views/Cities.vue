@@ -37,12 +37,12 @@ export default {
         {img:'https://i.ibb.co/LrK5xD4/newyork.jpg',name: 'New York', lon:-73.935242, lat:40.730610,range:13000, description:' The City of New York, is the most populous city in the United States,with an estimated 2018 population of 8,398,748.'}
         ]
     }
-    
+
   },
   methods: {
     travelTo(city){
       var vm = this
-      console.log("cities")
+    //  console.log("cities")
   /*    var formData = new FormData()
       formData.append('id',city.name)
       formData.append('name',city.name)

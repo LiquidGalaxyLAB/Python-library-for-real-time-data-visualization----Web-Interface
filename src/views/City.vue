@@ -40,6 +40,9 @@ import axios from 'axios'
 //const ERIC_API = "http://10.33.34.116:8080/"
 
 
+
+
+
   export default {
     name:'details',
 
@@ -52,9 +55,9 @@ import axios from 'axios'
         imageRole:'' ,
         role:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS'},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR'},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER'},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS',icon:process.env.VUE_APP_KML_API_URL + 'images/red-pushpin.png'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR', icon:process.env.VUE_APP_KML_API_URL + 'images/grn-pushpin.png'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER',icon:process.env.VUE_APP_KML_API_URL + 'images/blue-pushpin.png'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
         ] ,
         roleInfo:[]
@@ -78,7 +81,7 @@ import axios from 'axios'
 
         var urlApi = process.env.VUE_APP_NODE_API_URL + details.role + '/' + this.city
       //  console.log(urlApi)
-        vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img }})
+        vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img, icon:details.icon }})
 
         axios.get(urlApi)
        .then(function (response){
@@ -94,7 +97,10 @@ import axios from 'axios'
            formData.append('longitude',item.location[0])
            formData.append('latitude',item.location[1])
            formData.append('range',0)
-           
+           formData.append('icon',details.icon)
+
+         console.log(details.icon)
+
 
 
               //addplacemark method
@@ -106,8 +112,8 @@ import axios from 'axios'
            })
             .then(function (response) {
              //handle success
-        //     console.log("details Send")
-        //     console.log(response)
+          //   console.log("details Send")
+          //   console.log(response)
            })
            .catch(function (response) {
              //handle error
