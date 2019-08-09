@@ -55,9 +55,9 @@ import axios from 'axios'
         imageRole:'' ,
         role:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS',icon:process.env.VUE_APP_KML_API_URL + 'images/red-pushpin.png'},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR', icon:process.env.VUE_APP_KML_API_URL + 'images/grn-pushpin.png'},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER',icon:process.env.VUE_APP_KML_API_URL + 'images/blue-pushpin.png'},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS',icon:process.env.VUE_APP_KML_API_URL + 'images/homeless.png'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR',icon:process.env.VUE_APP_KML_API_URL + 'images/donor.png'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER',icon:process.env.VUE_APP_KML_API_URL + 'images/volunteer.png'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
         ] ,
         roleInfo:[]
@@ -98,12 +98,13 @@ import axios from 'axios'
            formData.append('latitude',item.location[1])
            formData.append('range',0)
            formData.append('icon',details.icon)
+      //   formData.append('description', item.lifeHistory)
 
-         console.log(details.icon)
+      //     console.log(item.lifeHistory)
 
 
 
-              //addplacemark method
+          //addplacemark method
            axios({
              method: 'post',
              url: process.env.VUE_APP_KML_API_URL + 'kml/builder/addplacemark',
@@ -127,6 +128,7 @@ import axios from 'axios'
        });
 
      }
+
     }
 }
 
