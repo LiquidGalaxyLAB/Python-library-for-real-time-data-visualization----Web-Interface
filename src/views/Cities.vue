@@ -72,7 +72,6 @@ export default {
         console.log("error",response);
       });
     }
-
   }
 }
 </script>

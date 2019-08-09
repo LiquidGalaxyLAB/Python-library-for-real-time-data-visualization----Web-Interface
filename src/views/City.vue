@@ -88,6 +88,7 @@ import axios from 'axios'
       //   console.log(response.data);
          vm.roleInfo = response.data
 
+
          vm.roleInfo.forEach((item)=>{
 
            //formData define
@@ -98,8 +99,9 @@ import axios from 'axios'
            formData.append('latitude',item.location[1])
            formData.append('range',0)
            formData.append('icon',details.icon)
+           formData.append('scale',1.3)
       //   formData.append('description', item.lifeHistory)
-
+           console.log(details.icon)
       //     console.log(item.lifeHistory)
 
 
