@@ -55,9 +55,9 @@ import axios from 'axios'
         imageRole:'' ,
         role:'',
         details: [
-          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS',icon:process.env.VUE_APP_KML_API_URL + 'images/homeless.png'},
-          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR',icon:process.env.VUE_APP_KML_API_URL + 'images/donor.png'},
-          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER',icon:process.env.VUE_APP_KML_API_URL + 'images/volunteer.png'},
+          {img:'https://i.ibb.co/5xRGwW5/homeless.png' , name: 'Homeless',role:'allhelpless', id: 'HOMELESS',icon:process.env.VUE_APP_KML_API_URL + 'images/homeless.png', foto:'https://i.ibb.co/2jYPJCV/homeless.png'},
+          {img:'https://i.ibb.co/948KGdK/shutterstock-2630522811-3-390x285.jpg',name: 'Donors',role:'donors', id:'DONOR',icon:process.env.VUE_APP_KML_API_URL + 'images/donor.png', foto:'https://i.ibb.co/h2SfjTH/donor.png'},
+          {img:'https://i.ibb.co/2h6Cb3C/Volunteer-Agift-to-the-community.png',name: 'Volunteers',role:'volunteers',id:'VOLUNTEER',icon:process.env.VUE_APP_KML_API_URL + 'images/volunteer.png',foto:'https://i.ibb.co/1KnD1XY/volunteer.png'},
           {img:'https://i.ibb.co/d7Jshnh/open-flash-chart-590x314.jpg',name: 'Transactions'}
         ] ,
         roleInfo:[]
@@ -81,7 +81,7 @@ import axios from 'axios'
 
         var urlApi = process.env.VUE_APP_NODE_API_URL + details.role + '/' + this.city
       //  console.log(urlApi)
-        vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img, icon:details.icon }})
+        vm.$router.push({ name: 'details' , params : { title:details.name, cityName:this.city, role: details.role, imageRole:details.img, icon:details.icon, foto: details.foto }})
 
         axios.get(urlApi)
        .then(function (response){

@@ -28,11 +28,9 @@
 </template>
 
 <script>
-
 import navbar from './components/navbar'
 import axios from 'axios'
 //const ERIC_API = "http://192.168.86.30:8112/"
-
 export default {
   name: 'App',
   components: {
@@ -60,8 +58,6 @@ export default {
         console.log("error",response);
       });
     }
-
   }
 }
-
 </script>
