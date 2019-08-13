@@ -14,9 +14,6 @@
                   <h3 class="headline mb-0 ">{{cityName}}</h3>
                 </div>
               </v-card-title>
-        <!--      <v-card-actions class="justify-center">
-                <v-btn flat color="#0000db" @click="getData()">Go To ></v-btn>
-              </v-card-actions>  -->
             </v-card>
           </v-flex>
   </v-layout>
@@ -24,6 +21,7 @@
   <v-card v-for="item in roleInfo"
      max-width="1200"
      class="mx-auto"
+
    >
    <v-layout
      py-4
@@ -59,7 +57,11 @@
 
  </v-card>
 
+
+
 </v-container>
+
+
 
 </template>
 

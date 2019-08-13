@@ -46,6 +46,13 @@ export default {
   },
   methods: {
     demo(){
+      setTimeout(()=>{
+        this.demoNewYork()
+      },40000);
+    },
+
+    demoNewYork(){
+
       var vm = this
       var cityName = 'New York'
       var lon = -73.935242
@@ -118,8 +125,6 @@ export default {
     this.distanceFly()
   },7000);
 
-
-
     },
 
     distanceFly(){
@@ -152,7 +157,7 @@ export default {
   },
 
   showBalloon(){
-    var completeName = 'Helen  Phillips'
+  var completeName = 'Helen  Phillips'
    var longitude = -73.924827
    var latitude = 40.804141
    var birthyear = 1989
@@ -255,7 +260,7 @@ export default {
 
     var lon = -73.935242
     var lat = 40.730610
-    var range = 11000000
+    var range = 13000000
 
     axios({
     method: 'get',
