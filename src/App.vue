@@ -6,7 +6,8 @@
         <span class="font-weight-light"> Python library for real time data visualization</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn  flat color="#33cc00" @click="cleanKml()">clean KMLs</v-btn>
+      <v-btn color="#9370DB" @click="demo()">DEMO</v-btn>
+      <v-btn  color="#33cc00" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
 
     <v-content>
@@ -31,16 +32,250 @@
 import navbar from './components/navbar'
 import axios from 'axios'
 //const ERIC_API = "http://192.168.86.30:8112/"
+
 export default {
   name: 'App',
   components: {
     navbar
   },
-  data () {
+    data: function(){
     return {
+      roleInfo: []
     }
+
   },
   methods: {
+    demo(){
+      var vm = this
+      var cityName = 'New York'
+      var lon = -73.935242
+      var lat = 40.730610
+      var range = 13000
+      var urlApi = process.env.VUE_APP_NODE_API_URL + 'allhelpless' + '/' + cityName
+
+
+
+      axios({
+      method: 'get',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ lon + '/' + lat + '/' + range
+
+    })
+     .then(function (response) {
+      //handle success
+
+      console.log(response)
+
+    })
+    .catch(function (response) {
+      //handle error
+      console.log("error",response);
+    }),
+
+    axios.get(urlApi)
+   .then(function (response){
+  //   console.log(response.data);
+     vm.roleInfo = response.data
+
+
+     vm.roleInfo.forEach((item)=>{
+
+       //formData define
+       var formData = new FormData()
+       formData.append('id',item.completeName)
+       formData.append('name',item.completeName)
+       formData.append('longitude',item.location[0])
+       formData.append('latitude',item.location[1])
+       formData.append('range',0)
+       formData.append('icon','https://i.ibb.co/2jYPJCV/homeless.png')
+       formData.append('scale',1.3)
+
+
+      //addplacemark method
+       axios({
+         method: 'post',
+         url: process.env.VUE_APP_KML_API_URL + 'kml/builder/addplacemark',
+         data: formData,
+         config: { headers: {'Content-Type': 'multipart/form-data' }}
+       })
+        .then(function (response) {
+         //handle success
+      //   console.log("details Send")
+      //   console.log(response)
+       })
+       .catch(function (response) {
+         //handle error
+        console.log("error",response);
+
+       });
+     });
+   }).catch(function(error){
+      console.log(error);
+
+   }),
+
+
+  setTimeout(()=>{
+    this.distanceFly()
+  },7000);
+
+
+
+    },
+
+    distanceFly(){
+
+      var lon = -73.935242
+      var lat = 40.730610
+      var range = 100000
+
+      axios({
+      method: 'get',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ lon + '/' + lat + '/' + range
+
+    })
+     .then(function (response) {
+      //handle success
+
+      console.log(response)
+
+    })
+    .catch(function (response) {
+      //handle error
+      console.log("error",response);
+    }),
+
+    setTimeout(()=>{
+      this.showBalloon()
+    },7000);
+
+
+  },
+
+  showBalloon(){
+    var completeName = 'Helen  Phillips'
+   var longitude = -73.924827
+   var latitude = 40.804141
+   var birthyear = 1989
+   var lifeHistory = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+   var need = 'Clothes'
+   var schedule = 'Every monday from 15.00h to 17:00h'
+   var description = ''
+   var formData = new FormData()
+
+   description ='Birthyear:  ' + birthyear + '\n'+ '\n' + 'Life History:' + '\n' + lifeHistory + '\n' + '\n' + 'Most important need:  ' + need  + '\n' + '\n' + 'Schedule: '  + schedule
+
+  formData.append('id',completeName)
+  formData.append('name',completeName)
+  formData.append('longitude',longitude)
+  formData.append('latitude',latitude)
+  formData.append('range',70)
+  formData.append('icon','https://i.ibb.co/2jYPJCV/homeless.png')
+  formData.append('scale',1.3)
+  formData.append('description',description)
+
+  axios({
+    method: 'get',
+    url: process.env.VUE_APP_KML_API_URL + 'kml/manage/clean',
+ //   data: formData,
+ //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+  })
+   .then(function (response) {
+    //handle success
+    console.log(response)
+  })
+  .catch(function (response) {
+    //handle error
+    console.log("error",response);
+  }),
+
+  //addplacemark method
+   axios({
+     method: 'post',
+     url: process.env.VUE_APP_KML_API_URL + 'kml/builder/addplacemark',
+     data: formData,
+     config: { headers: {'Content-Type': 'multipart/form-data' }}
+   })
+    .then(function (response) {
+     //handle success
+  //   console.log("details Send")
+  //   console.log(response)
+   })
+   .catch(function (response) {
+     //handle error
+    console.log("error",response);
+}).catch(function(error){
+  console.log(error);
+
+}),
+
+  axios({
+    method: 'get',
+    url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ longitude + '/' + latitude + '/' + 2000
+//    data: formData,
+//    config: { headers: {'Content-Type': 'multipart/form-data' }}
+  })
+   .then(function (response) {
+    //handle success
+  //  console.log("cities Send")
+    console.log(response)
+
+  })
+  .catch(function (response) {
+    //handle error
+    console.log("error",response);
+  }),
+
+  axios({
+    method: 'get',
+    url: process.env.VUE_APP_KML_API_URL + 'kml/manage/balloon/'+ completeName + '/' + 1
+//    data: formData,
+//    config: { headers: {'Content-Type': 'multipart/form-data' }}
+  })
+   .then(function (response) {
+    //handle success
+  //  console.log("cities Send")
+    console.log(response)
+
+  })
+  .catch(function (response) {
+    //handle error
+    console.log("error",response);
+  }),
+
+  setTimeout(()=>{
+    this.cleanKml()
+  },10000),
+
+  setTimeout(()=>{
+    this.flySpace()
+  },10000);
+
+  },
+  flySpace(){
+
+    var lon = -73.935242
+    var lat = 40.730610
+    var range = 11000000
+
+    axios({
+    method: 'get',
+    url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ lon + '/' + lat + '/' + range
+
+  })
+   .then(function (response) {
+    //handle success
+
+    console.log(response)
+
+  })
+  .catch(function (response) {
+    //handle error
+    console.log("error",response);
+  })
+
+
+  },
+
     cleanKml(){
       //clean kmls mthod
       axios({
