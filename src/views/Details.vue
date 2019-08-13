@@ -37,8 +37,8 @@
 
        <td class="text-xs-left">{{ props.item.completeName }}</td>
        <td class="text-xs-right">
-       <v-btn color="#A7FFEB" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)">SEE</v-btn>
-       <v-btn color="#E3F2FD" @click="show(props.item.location[0], props.item.location[1])">ORBIT </v-btn>
+       <v-btn color="#80D8FF" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)">SEE</v-btn>
+       <v-btn color="#A7FFEB" @click="show(props.item.location[0], props.item.location[1])">ORBIT </v-btn>
        </td>
      </template>
      <v-alert slot="no-results" :value="true" color="error" icon="warning">
