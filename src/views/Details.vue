@@ -18,7 +18,37 @@
           </v-flex>
   </v-layout>
 
-  <v-card v-for="item in roleInfo"
+  <v-card-title>
+     <v-spacer></v-spacer>
+     <v-text-field
+       append-icon="search"
+       label="Search"
+       single-line
+       hide-details
+       v-model="search"
+     ></v-text-field>
+   </v-card-title>
+   <v-data-table
+     :headers="headers"
+     :items="items"
+     :search="search"
+   >
+     <template slot="items" slot-scope="props">
+
+       <td class="text-xs-left">{{ props.item.completeName }}</td>
+       <td class="text-xs-right">
+       <v-btn color="#A7FFEB" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)">SEE</v-btn>
+       <v-btn color="#E3F2FD" @click="show(props.item.location[0], props.item.location[1])">ORBIT </v-btn>
+       </td>
+     </template>
+     <v-alert slot="no-results" :value="true" color="error" icon="warning">
+       Your search for "{{ search }}" found no results.
+     </v-alert>
+   </v-data-table>
+ </v-card>
+
+
+<!--  <v-card v-for="item in roleInfo"
      max-width="1200"
      class="mx-auto"
 
@@ -55,7 +85,7 @@
      </v-flex>
    </v-layout>
 
- </v-card>
+ </v-card>  -->
 
 
 
@@ -73,6 +103,9 @@ const range = 2000
 
 export default {
   name:'details',
+  created: function(){
+     this.getData()
+ },
 
   data: function(){
     return {
@@ -83,7 +116,14 @@ export default {
       roleInfo: [],
       icon:'',
       foto:'',
-      roleName: []
+      roleName: [],
+      search: '',
+     headers: [
+       { text: 'Complete Name', value: 'completeName' },
+       { text: 'Action', sortable: false, align: 'right', value: 'action' },
+     ],
+     items: []
+
    }
  },
 
@@ -112,6 +152,23 @@ axios.get(urlApi)
 },
 
 methods: {
+  getData: function(){
+    var vm = this
+    this.role = this.$route.params.role;
+    this.cityName = this.$route.params.cityName;
+
+    var urlApi = process.env.VUE_APP_NODE_API_URL + this.role + '/' + this.cityName
+    console.log(urlApi)
+    axios.get(urlApi)
+    .then(function (response){
+      vm.items = response.data
+
+    })
+    .catch(function(response){
+      console.log("error", response);
+    })
+
+},
   show(id, longitude, latitude, completeName, lifeHistory, need, birthyear, schedule,donationType,helpType,city){
     var vm = this
     var urlApi = process.env.VUE_APP_NODE_API_URL + this.role + '/' + this.cityName

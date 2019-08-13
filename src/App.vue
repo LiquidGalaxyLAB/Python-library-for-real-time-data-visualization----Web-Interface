@@ -6,8 +6,8 @@
         <span class="font-weight-light"> Python library for real time data visualization</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn color="#9370DB" @click="demo()">DEMO</v-btn>
-      <v-btn  color="#33cc00" @click="cleanKml()">clean KMLs</v-btn>
+      <v-btn color="#82B1FF" @click="demo()">DEMO</v-btn>
+      <v-btn  color="#1DE9B6" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
 
     <v-content>
