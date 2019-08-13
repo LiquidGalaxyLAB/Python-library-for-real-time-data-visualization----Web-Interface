@@ -48,11 +48,11 @@
        </v-container>
      </v-flex>
       <v-spacer></v-spacer>
-     <v-flex>
+     <v-flex >
        <v-card-actions class="justify-center">
           <v-spacer></v-spacer>
-          <v-btn color="#6495ED" @click="">SEE</v-btn>
-          <v-btn color="#87CEFA" @click="">HIDE</v-btn>
+          <v-btn color="#6495ED" @click="show(item.location[0], item.location[1])">ORBIT</v-btn>
+          <v-btn color="#6495ED" @click="show(item._id, item.location[0], item.location[1], item.completeName, item.lifeHistory, item.need, item.birthyear, item.schedule, item.donationType, item.helpType, item.city)">SEE</v-btn>
        </v-card-actions>
      </v-flex>
    </v-layout>
@@ -66,10 +66,7 @@
 <script type="text/javascript">
 
 import axios from 'axios'
-
-//const API_URL = "http://localhost:3000/"
-//const ERIC_API = "http://192.168.86.30:8112/"
-
+const range = 2000
 
 
 export default {
@@ -83,7 +80,8 @@ export default {
       title:'',
       roleInfo: [],
       icon:'',
-      foto:''
+      foto:'',
+      roleName: []
    }
  },
 
@@ -104,31 +102,150 @@ mounted(){
 axios.get(urlApi)
 .then(function (response){
   vm.roleInfo = response.data
-  //console.log('formData', response.data)
 
-  vm.roleInfo.forEach((item)=>{
-    //formData define
-    var formData = new FormData()
-    formData.append('id',item.id)
-    formData.append('name',item.completeName)
-    formData.append('longitude',item.location[0])
-    formData.append('latitude',item.location[1])
-    formData.append('range',0)
-    formData.append('description', item.lifeHistory)
-    formData.append('icon', vm.icon)
- //    formData.append('foto', vm.foto)
-
-  //  vm.roleName = item.completeName
-  //  console.log(vm.icon)
-
-  })
 })
 .catch(function(response){
   console.log("error", response);
 })
 },
+
 methods: {
-},
+  show(id, longitude, latitude, completeName, lifeHistory, need, birthyear, schedule,donationType,helpType,city){
+    var vm = this
+    var urlApi = process.env.VUE_APP_NODE_API_URL + this.role + '/' + this.cityName
+    var formData = new FormData()
+    var description = ''
+
+    axios.get(urlApi)
+    .then(function (response){
+      vm.roleInfo = response.data
+
+    })
+    .catch(function(response){
+      console.log("error", response);
+    })
+
+
+    if (this.role == 'allhelpless'){
+      description ='Birthyear:  ' + birthyear + '\n'+ '\n' + 'Life History:' + '\n' + lifeHistory + '\n' + '\n' + 'Most important need:  ' + need+ '\n' + '\n' + 'Schedule: '  + schedule
+    }else if (this.role == 'donors'){
+      description = 'Donation type:  ' + donationType + '\n' + '\n' + 'Help type: ' + helpType
+    }else if (this.role == 'volunteers'){
+      description = 'Birthyear: ' + birthyear + '\n' + '\n' + 'City: ' + city
+    }
+
+
+
+    formData.append('id',completeName)
+    formData.append('name',completeName)
+    formData.append('longitude',longitude)
+    formData.append('latitude',latitude)
+    formData.append('range',70)
+    formData.append('icon',this.icon)
+    formData.append('scale',1.3)
+    formData.append('description',description)
+
+    console.log(this.role)
+
+    axios({
+      method: 'get',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/manage/clean',
+   //   data: formData,
+   //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+     .then(function (response) {
+      //handle success
+      console.log(response)
+    })
+    .catch(function (response) {
+      //handle error
+      console.log("error",response);
+    }),
+
+    //addplacemark method
+     axios({
+       method: 'post',
+       url: process.env.VUE_APP_KML_API_URL + 'kml/builder/addplacemark',
+       data: formData,
+       config: { headers: {'Content-Type': 'multipart/form-data' }}
+     })
+      .then(function (response) {
+       //handle success
+    //   console.log("details Send")
+    //   console.log(response)
+     })
+     .catch(function (response) {
+       //handle error
+      console.log("error",response);
+ }).catch(function(error){
+    console.log(error);
+
+ }),
+
+    axios({
+      method: 'get',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/flyto/'+ longitude + '/' + latitude + '/' + 2000
+  //    data: formData,
+  //    config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+     .then(function (response) {
+      //handle success
+    //  console.log("cities Send")
+      console.log(response)
+
+    })
+    .catch(function (response) {
+      //handle error
+      console.log("error",response);
+    }),
+
+    axios({
+      method: 'get',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/manage/balloon/'+ completeName + '/' + 1
+  //    data: formData,
+  //    config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+     .then(function (response) {
+      //handle success
+    //  console.log("cities Send")
+      console.log(response)
+
+    })
+    .catch(function (response) {
+      //handle error
+      console.log("error",response);
+    });
+
+  },
+
+  orbit(longitude, latitude){
+    var formData = new FormData()
+    formData.append('longitude',longitude)
+    formData.append('latitude',latitude)
+    formData.append('altitude',200)
+
+
+    axios({
+      method: 'post',
+      url: process.env.VUE_APP_KML_API_URL + 'kml/builder/orbit',
+      data: formData,
+      config: { headers: {'Content-Type': 'multipart/form-data' }}
+    })
+     .then(function (response) {
+      //handle success
+   //   console.log("details Send")
+   //   console.log(response)
+    })
+    .catch(function (response) {
+      //handle error
+     console.log("error",response);
+}).catch(function(error){
+   console.log(error);
+
+})
+  }
+
+}
 
 }
 

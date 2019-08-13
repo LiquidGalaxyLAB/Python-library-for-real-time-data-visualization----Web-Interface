@@ -42,17 +42,6 @@ export default {
   methods: {
     travelTo(city){
       var vm = this
-    //  console.log("cities")
-  /*    var formData = new FormData()
-      formData.append('id',city.name)
-      formData.append('name',city.name)
-      formData.append('longitude',city.lon)
-      formData.append('latitude',city.lat)
-      formData.append('range',0)
-      console.log(formData) */
-    //  console.log('city:',city.name)
-    //  console.log('longitude:',city.lon)
-    //  console.log('latitude:',city.lat)
       vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
 
       axios({
