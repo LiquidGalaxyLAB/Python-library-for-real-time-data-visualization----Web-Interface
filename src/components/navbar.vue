@@ -1,5 +1,5 @@
 <template>
-  <v-container  align-content-center justify-center row fill-height >
+  <v-container  align-content-left justify-center row fill-height >
    <nav  id="menu" class="nav" >
   	<ul style="margin-left:auto;margin-right:auto;">
   		<li>
@@ -13,6 +13,9 @@
   		<li>
   			<a  href="#/about" title=""><span  class="icon"><i  aria-hidden="true" class="icon-about"></i></span><span>About</span></a>
   		</li>
+      <li>
+        <a  href="#" title=""><span  class="icon"><i  aria-hidden="true" class="icon-stats-dots"></i></span><span>Statistics</span></a>
+      </li>
   	</ul>
   </nav>
   </v-container>

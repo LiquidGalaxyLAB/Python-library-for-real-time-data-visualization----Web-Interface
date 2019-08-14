@@ -53,7 +53,7 @@ export default {
        .then(function (response) {
         //handle success
       //  console.log("cities Send")
-        console.log(response)
+      //  console.log(response)
 
       })
       .catch(function (response) {

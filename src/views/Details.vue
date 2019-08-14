@@ -102,7 +102,7 @@ remove_red_eye
 <script type="text/javascript">
 
 import axios from 'axios'
-const range = 2000
+
 
 
 export default {

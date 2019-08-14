@@ -22,7 +22,7 @@
 }
 
 
-.icon-home, .icon-cities, .icon-about  {
+.icon-home, .icon-cities, .icon-about, .icon-stats-dots  {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -43,6 +43,10 @@
 
 .icon-about:before{
   content: "\ea0c";
+}
+
+.icon-stats-dots:before {
+  content: "\e99b";
 }
 
 a, li {
@@ -122,6 +126,10 @@ a, button {
 	background: rgb(254,63,196);
 }
 
+.nav li:nth-child(6n+4) {
+	background: rgb(1,214,156);
+}
+
 
 /* For screen bigger than 800px */
 @media (min-width: 50em) {
@@ -159,6 +167,12 @@ a, button {
 	.no-touch .nav li:nth-child(6n+3) a:hover,
 	.no-touch .nav li:nth-child(6n+3) a:active,
 	.no-touch .nav li:nth-child(6n+3) a:focus {
+		border-bottom: 4px solid rgb(12, 110, 149);
+	}
+
+	.no-touch .nav li:nth-child(6n+4) a:hover,
+	.no-touch .nav li:nth-child(6n+4) a:active,
+	.no-touch .nav li:nth-child(6n+4) a:focus {
 		border-bottom: 4px solid rgb(12, 110, 149);
 	}
 
@@ -265,6 +279,12 @@ a, button {
 	.no-touch .nav li:nth-child(6n+3) a:active,
 	.no-touch .nav li:nth-child(6n+3) a:focus {
 		background: rgb(44, 168, 219);
+	}
+
+	.no-touch .nav li:nth-child(6n+3) a:hover,
+	.no-touch .nav li:nth-child(6n+3) a:active,
+	.no-touch .nav li:nth-child(6n+3) a:focus {
+		background: rgb(1,214,156);;
 	}
 
 
@@ -436,6 +456,12 @@ a, button {
 	.nav li:nth-child(6n+3) {
 		border-left: 8px solid rgb(13, 111, 150);
 	}
+
+	.nav li:nth-child(6n+3) {
+		border-left: 8px solid rgb(174, 78, 1);
+	}
+
+
 
 
 
