@@ -7,7 +7,8 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn color="#82B1FF" @click="demo()">DEMO</v-btn>
-      <v-btn  color="#1DE9B6" @click="cleanKml()">clean KMLs</v-btn>
+      <v-btn color="#ff6b6b" @click="stopDemo()">STOP DEMO</v-btn>
+      <v-btn  color="#a5ff91" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
 
     <v-content>
@@ -45,10 +46,14 @@ export default {
 
   },
   methods: {
+    stopDemo(){
+
+    },
     demo(){
 
         this.demoNewYork(),
         setTimeout(()=>{
+
           this.demoLleida()
         },34000),
         setTimeout(()=>{

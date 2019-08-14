@@ -24,7 +24,7 @@
 <script>
 
 import axios from 'axios'
-//const ERIC_API = "http://10.33.34.116:8080/"
+
 
 export default {
   name: 'cities',

@@ -51,48 +51,6 @@ remove_red_eye
    </v-data-table>
  </v-card>
 
-
-<!--  <v-card v-for="item in roleInfo"
-     max-width="1200"
-     class="mx-auto"
-
-   >
-   <v-layout
-     py-4
-     pl-4
-   >
-     <v-flex shrink >
-       <v-card-media :src="foto" height="50"
-       width="50">
-       </v-card-media>
-     </v-flex>
-     <v-flex text-center>
-       <v-container
-         grid-list-lg
-         pa-0
-       >
-       <v-layout column>
-         <v-flex>
-           <p class="display-1 text--primary">
-      {{ item.completeName }}</p>
-         </v-flex>
-       </v-layout>
-       </v-container>
-     </v-flex>
-      <v-spacer></v-spacer>
-     <v-flex >
-       <v-card-actions class="justify-center">
-          <v-spacer></v-spacer>
-          <v-btn color="#6495ED" @click="show(item.location[0], item.location[1])">ORBIT</v-btn>
-          <v-btn color="#6495ED" @click="show(item._id, item.location[0], item.location[1], item.completeName, item.lifeHistory, item.need, item.birthyear, item.schedule, item.donationType, item.helpType, item.city)">SEE</v-btn>
-       </v-card-actions>
-     </v-flex>
-   </v-layout>
-
- </v-card>  -->
-
-
-
 </v-container>
 
 
@@ -145,8 +103,8 @@ mounted(){
 
   var urlApi = process.env.VUE_APP_NODE_API_URL + this.role + '/' + this.cityName
 
-axios.get(urlApi)
-.then(function (response){
+  axios.get(urlApi)
+  .then(function (response){
   vm.roleInfo = response.data
 
 })
