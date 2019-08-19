@@ -281,9 +281,9 @@ a, button {
 		background: rgb(44, 168, 219);
 	}
 
-	.no-touch .nav li:nth-child(6n+3) a:hover,
-	.no-touch .nav li:nth-child(6n+3) a:active,
-	.no-touch .nav li:nth-child(6n+3) a:focus {
+	.no-touch .nav li:nth-child(6n+4) a:hover,
+	.no-touch .nav li:nth-child(6n+4) a:active,
+	.no-touch .nav li:nth-child(6n+4) a:focus {
 		background: rgb(1,214,156);;
 	}
 
@@ -457,7 +457,7 @@ a, button {
 		border-left: 8px solid rgb(13, 111, 150);
 	}
 
-	.nav li:nth-child(6n+3) {
+	.nav li:nth-child(6n+4) {
 		border-left: 8px solid rgb(174, 78, 1);
 	}
 
