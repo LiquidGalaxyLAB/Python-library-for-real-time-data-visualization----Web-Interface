@@ -197,11 +197,11 @@ mounted(){
 methods:{
   statistics: function(){
     var vm = this
-      this.getHomeless()
+      this.getData()
 
   },
 
-  getHomeless(){
+  getData(){
     var vm = this
     var lon = 39.687043
     var lat = 21.941500

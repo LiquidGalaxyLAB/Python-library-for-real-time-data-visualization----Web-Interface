@@ -2,7 +2,7 @@
   <v-container grid-list-lg >
       <v-layout row wrap>
           <v-flex xs12  >
-            <v-card color="#e8eaff">
+            <v-card color="#F8BBD0">
             <v-card-media :src="imageRole" height="200px">
             </v-card-media>
               <v-card-title primary-title class="justify-center">
@@ -166,7 +166,6 @@ methods: {
     formData.append('scale',1.3)
     formData.append('description',description)
 
-    console.log(this.role)
 
     axios({
       method: 'get',

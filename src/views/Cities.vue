@@ -42,7 +42,7 @@ export default {
   methods: {
     travelTo(city){
       var vm = this
-      vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img }})
+      vm.$router.push({ name: 'city' , params : { cityName:city.name, image: city.img, lon: city.lon , lat: city.lat, range: city.range}})
 
       axios({
         method: 'get',
