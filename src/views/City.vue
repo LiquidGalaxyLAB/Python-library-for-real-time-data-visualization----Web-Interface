@@ -193,8 +193,6 @@ import axios from 'axios'
       travelTo(details){
         var vm = this
 
-
-
     //    console.log(details)
 
         var urlApi = process.env.VUE_APP_NODE_API_URL + details.role + '/' + this.city

@@ -40,7 +40,7 @@
        <v-btn  flat class text icon color="#0D47A1" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)"><i class="material-icons">
 remove_red_eye
 </i></v-btn>
-       <v-btn flat class text icon color="#E91E63" @click="show(props.item.location[0], props.item.location[1])"><i class="material-icons">
+       <v-btn flat class text icon color="#E91E63" @click="orbit( props.item.completeName, props.item.completeName,props.item.lifeHistory,props.item.location[0], props.item.location[1])"><i class="material-icons">
 360
 </i></v-btn>
        </td>
@@ -238,11 +238,16 @@ methods: {
 
   },
 
-  orbit(longitude, latitude){
+  orbit(id, name, description,longitude, latitude){
+
+    var range = 20000
     var formData = new FormData()
+    formData.append('id', name)
+    formData.append('name',name)
+    formData.append('decription',description)
     formData.append('longitude',longitude)
     formData.append('latitude',latitude)
-    formData.append('altitude',200)
+    formData.append('range',range)
 
 
     axios({
