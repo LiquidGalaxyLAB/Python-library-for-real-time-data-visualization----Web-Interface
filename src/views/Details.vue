@@ -37,12 +37,10 @@
 
        <td class="text-xs-left">{{ props.item.completeName }}</td>
        <td class="text-xs-right">
-       <v-btn  flat class text icon color="#0D47A1" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)"><i class="material-icons">
-remove_red_eye
-</i></v-btn>
-       <v-btn flat class text icon color="#E91E63" @click="orbit(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)"><i class="material-icons">
-360
-</i></v-btn>
+       <v-btn  flat class text icon color="#0D47A1" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)">
+         <i class="material-icons">remove_red_eye</i></v-btn>
+       <v-btn flat class text icon color="#E91E63" @click="orbit(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)">
+         <i class="material-icons">360</i></v-btn>
        </td>
      </template>
      <v-alert slot="no-results" :value="true" color="error" icon="warning">
@@ -244,6 +242,7 @@ methods: {
     var range = 70
     var formData = new FormData()
     var description = ''
+    var url = process.env.VUE_APP_KML_API_URL + 'kml/builder/orbit'
 
     if (this.role == 'allhelpless'){
       description ='Birthyear:  ' + birthyear + '\n'+ '\n' + 'Life History:' + '\n' + lifeHistory + '\n' + '\n' + 'Most important need:  ' + need+ '\n' + '\n' + 'Schedule: '  + schedule
@@ -255,19 +254,19 @@ methods: {
 
 
 
-
     formData.append('id', completeName)
     formData.append('name',completeName)
-    formData.append('decription',description)
+    formData.append('description', description)
     formData.append('longitude',longitude)
     formData.append('latitude',latitude)
     formData.append('range',70)
 
 
 
+
     axios({
       method: 'post',
-      url: process.env.VUE_APP_KML_API_URL + 'kml/builder/orbit',
+      url: url,
       data: formData,
       config: { headers: {'Content-Type': 'multipart/form-data' }}
     })
@@ -301,9 +300,8 @@ axios({
   //handle error
   console.log("error",response);
 });
+}
 
-
-  }
 
 }
 
