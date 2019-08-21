@@ -40,7 +40,7 @@
        <v-btn  flat class text icon color="#0D47A1" @click="show(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)"><i class="material-icons">
 remove_red_eye
 </i></v-btn>
-       <v-btn flat class text icon color="#E91E63" @click="orbit( props.item.completeName, props.item.completeName,props.item.lifeHistory,props.item.location[0], props.item.location[1])"><i class="material-icons">
+       <v-btn flat class text icon color="#E91E63" @click="orbit(props.item._id, props.item.location[0], props.item.location[1], props.item.completeName, props.item.lifeHistory, props.item.need, props.item.birthyear, props.item.schedule, props.item.donationType, props.item.helpType, props.item.city)"><i class="material-icons">
 360
 </i></v-btn>
        </td>
@@ -234,20 +234,35 @@ methods: {
     .catch(function (response) {
       //handle error
       console.log("error",response);
-    });
+    })
+
 
   },
 
-  orbit(id, name, description,longitude, latitude){
+  orbit(id, longitude, latitude, completeName, lifeHistory, need, birthyear, schedule,donationType,helpType,city){
 
-    var range = 20000
+    var range = 70
     var formData = new FormData()
-    formData.append('id', name)
-    formData.append('name',name)
+    var description = ''
+
+    if (this.role == 'allhelpless'){
+      description ='Birthyear:  ' + birthyear + '\n'+ '\n' + 'Life History:' + '\n' + lifeHistory + '\n' + '\n' + 'Most important need:  ' + need+ '\n' + '\n' + 'Schedule: '  + schedule
+    }else if (this.role == 'donors'){
+      description = 'Donation type:  ' + donationType + '\n' + '\n' + 'Help type: ' + helpType
+    }else if (this.role == 'volunteers'){
+      description = 'Birthyear: ' + birthyear + '\n' + '\n' + 'City: ' + city
+    }
+
+
+
+
+    formData.append('id', completeName)
+    formData.append('name',completeName)
     formData.append('decription',description)
     formData.append('longitude',longitude)
     formData.append('latitude',latitude)
-    formData.append('range',range)
+    formData.append('range',70)
+
 
 
     axios({
@@ -268,6 +283,26 @@ methods: {
    console.log(error);
 
 })
+
+
+axios({
+  method: 'get',
+  url: process.env.VUE_APP_KML_API_URL + 'kml/manage/initTour/' + completeName
+//    data: formData,
+//    config: { headers: {'Content-Type': 'multipart/form-data' }}
+})
+ .then(function (response) {
+  //handle success
+//  console.log("cities Send")
+//  console.log(response)
+
+})
+.catch(function (response) {
+  //handle error
+  console.log("error",response);
+});
+
+
   }
 
 }

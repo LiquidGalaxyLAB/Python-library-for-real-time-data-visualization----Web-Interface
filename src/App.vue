@@ -8,6 +8,7 @@
       <v-spacer></v-spacer>
       <v-btn color="#82B1FF" @click="demo()">DEMO</v-btn>
       <v-btn color="#ff6b6b" @click="stopDemo()">STOP DEMO</v-btn>
+      <v-btn color="#ffa4a4" @click="stopOrbit()">STOP ORBIT</v-btn>
       <v-btn  color="#a5ff91" @click="cleanKml()">clean KMLs</v-btn>
     </v-toolbar>
 
@@ -736,7 +737,25 @@ console.log("error",response);
         //handle error
         console.log("error",response);
       });
+    },
+
+    stopOrbit(){
+      axios({
+        method: 'get',
+        url: process.env.VUE_APP_KML_API_URL + 'kml/manage/stopTour',
+     //   data: formData,
+     //   config: { headers: {'Content-Type': 'multipart/form-data' }}
+      })
+       .then(function (response) {
+        //handle success
+    //    console.log(response)
+      })
+      .catch(function (response) {
+        //handle error
+        console.log("error",response);
+      });
     }
+
   }
 }
 </script>
